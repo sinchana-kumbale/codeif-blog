@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'app.user',
     'app.dashboard',
     'app.home',
+    'app.dashboard.writer',
+    'app.dashboard.writer.post',
 ]
 
 MIDDLEWARE = [

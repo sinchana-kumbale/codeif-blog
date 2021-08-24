@@ -30,7 +30,19 @@
     Sign-In
   </a>
 
-  
+  {% if user.is_authenticated %}
+    {% if user.is_staff == True %}
+    <a href="{% url 'Cpost' %}" class="btn">
+       createPost
+    </a>
+    <a href="{% url 'index' %}" class="btn">
+       all posts
+    </a>
+    <a href="{% url 'history' %}" class="btn">
+      <b>{{user}}</b> Post History
+    </a>
+    {% endif %}
+  {% endif %}
   <br><br>
   {% if user.is_authenticated %}
     <a href="{% url 'logout' %}" class="btn">
