@@ -20,8 +20,8 @@
   </style>
 </head>
 <body>
-  <h1>Home Page</h1>
-
+  <h5>Home Page</h5>
+  
   <a href="{% url 'register' %}" class="btn">
     Sign-UP
   </a>
@@ -29,9 +29,14 @@
   <a href="{% url 'login' %}" class="btn">
     Sign-In
   </a>
-
   {% if user.is_authenticated %}
-    {% if user.is_staff == True %}
+    <a href="{% url 'logout' %}" class="btn">
+      logout
+    </a>
+  {% endif %}
+<hr>
+  {% if user.is_authenticated %}
+    {% if user.Category == 'Writer' %} <b>writer = </b>
     <a href="{% url 'Cpost' %}" class="btn">
        createPost
     </a>
@@ -40,15 +45,19 @@
     </a>
     <a href="{% url 'history' %}" class="btn">
       <b>{{user}}</b> Post History
+    </a> <hr>
+    {% endif %}
+  {% endif %}
+  {% if user.is_authenticated %}
+    {% if user.Category == 'Reader' %} <b>Reader = </b>
+    <a href="{% url 'index' %}" class="btn">
+       all posts
     </a>
+    <hr>
     {% endif %}
   {% endif %}
   <br><br>
-  {% if user.is_authenticated %}
-    <a href="{% url 'logout' %}" class="btn">
-      logout
-    </a>
-    
+  {% if user.is_authenticated %}    
     <p><b>User-Name: </b>{{user}}</p>
     <p><b>User-Type: </b>{{user.Category}}</p>
   {% else %}
