@@ -14,8 +14,10 @@
   {% for i in posts %}
     <h1>{{ i.Title }}</h1>
     <h3>{{ i.User_Name }}</h3>
-    <p>{{ i.Details }}</p>
+    <p>{{ i.Details }} <b style="margin-left: 10%; color: red;">{{ i.views }}  views</b> </p>
     <a href="{% url 'details' i.pk %}">Continue Reading</a> 
+    <br><br><br>
+    <b>Viewed Users:------ </b> {{ i.Users_views }}
     <hr>
   {% endfor %}
 </body>

@@ -25,8 +25,13 @@ def createVIEW(request):
 
 # =======================================Details post logic (here)======================================================
 
-def detailsVIEW(request, id):           #views logic...
-  content = post.objects.filter(id=id)       
+def detailsVIEW(request, id):           
+  content = post.objects.filter(id=id)
+  #views logic...
+  blog_post = post.objects.get(id=id) 
+  blog_post.views = blog_post.views + 1
+  blog_post.Users_views.add(request.user)
+  blog_post.save()   
   return render(request,'details.html', {'content': content})
 
 
