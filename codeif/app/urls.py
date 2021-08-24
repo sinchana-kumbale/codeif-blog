@@ -1,0 +1,7 @@
+from django.conf.urls.static import static
+from django.urls import path, include
+
+urlpatterns = [
+  path('user/',include('app.user.urls')),
+  path('home/',include('app.home.urls')),
+]
