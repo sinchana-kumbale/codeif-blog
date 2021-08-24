@@ -25,9 +25,9 @@ def createVIEW(request):
 
 # =======================================Details post logic (here)======================================================
 
-def detailsView(request, id):           #views logic...
+def detailsVIEW(request, id):           #views logic...
   content = post.objects.filter(id=id)       
-  return render(request,'detials.html', {'content': content})
+  return render(request,'details.html', {'content': content})
 
 
 
@@ -37,7 +37,7 @@ class DeleteVIEW(DeleteView):
   model = post
   template_name = 'delete.html'
   context_object_name = 'object'
-  success_url = reverse_lazy('display')
+  success_url = reverse_lazy('index')
 
 
 # =======================================History post logic (here)=======================================================

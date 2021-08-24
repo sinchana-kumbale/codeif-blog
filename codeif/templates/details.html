@@ -7,16 +7,14 @@
   <title>Document</title>
 </head>
 <body>
-  <br>
-  all posts (page without filter)
-  <br>
-  <hr>
-  {% for i in posts %}
+  {% for i in content %}
     <h1>{{ i.Title }}</h1>
     <h3>{{ i.User_Name }}</h3>
     <p>{{ i.Details }}</p>
-    <a href="{% url 'details' i.pk %}">Continue Reading</a> 
     <hr>
+    {% if user == i.User_Name %}
+      <a href="{% url 'delete' i.pk %}" >deletepost</a>
+    {% endif %}
   {% endfor %}
 </body>
 </html>
