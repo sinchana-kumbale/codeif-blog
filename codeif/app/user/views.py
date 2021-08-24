@@ -9,7 +9,7 @@ from django.views import generic
 from django.http import HttpResponseRedirect
 from django.urls import reverse_lazy, reverse
 
-# Create your views here.
+# Create your views here. now
 
 
 class UserRegisterView(generic.CreateView):
