@@ -9,27 +9,18 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 {% block content %}
-<body style="background-color: rgb(146, 146, 138);">
-  <div class="container">
-    <br><br>
-    <h2 style="text-align: center; color: white;">Create A new <b>POST</b></h2>
-    <form method="POST" enctype="multipart/form-data">
+<body style="background-color: rgb(155, 155, 147);">
+  <div class="container"><br>
+    <h2 style="text-align: center; color: white;">Update your <b>POST</b></h2>
+    <form method="POST"><br><br><br>
       {% csrf_token %}
-      <div class="form-group">
-        <label ><b>POST Heading:</b></label>
-        {{ form.TitleF }}
-      </div>
-      <!--<div class="form-group">
-        <label ><b>POST Category:</b></label>
-        {{ form.CategoryF}}
-      </div>-->
-      <div class="form-group">
-        <label ><b>POST Content:</b></label>
-        {{ form.DetailsF}}
-      </div>
-      {{ form.Images }}
+      <div class="form-group" style="color: black;">
+      {{ form.as_p }}
       <br><br>
       <button type="submit" class="btn btn-dark btn-lg btn-block" style="color: white;"><b>Publish</b></button>
+    </form><br><br>
+  </div>
+      
     </form>
   </div>
 {% endblock %}

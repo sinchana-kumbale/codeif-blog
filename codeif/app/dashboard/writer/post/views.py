@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, reverse
 from django.http import HttpResponseRedirect
 from .models import post
-from .forms import CpostFORMS
-from django.views.generic.edit import DeleteView
+from .forms import CpostFORMS, UpostFORMS
+from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.conf import settings
+from django.contrib.auth.models import User
 
 # =======================================Create your post logic (here)==================-==============================    Images =request.FILES['Images']       Category=request.POST['CategoryF']
 def createVIEW(request):
@@ -42,6 +43,31 @@ class DeleteVIEW(DeleteView):
   model = post
   template_name = 'delete.html'
   context_object_name = 'object'
+  success_url = reverse_lazy('index')
+
+
+# =======================================History post logic (here)=======================================================
+'''
+def updateVIEW(request, pk):
+  postinfo = post.objects.get(id=pk)
+  form = UpostFORMS(instance = postinfo)
+
+  if request.method == 'POST':
+    form = UpostFORMS(request.POST, instance = postinfo)
+    if form.is_valid():
+      form.save()
+      return HttpResponseRedirect(reverse('test'))
+
+  else:
+    form = UpostFORMS()
+  return render(request, 'update.html', {'form' : form})'''
+
+
+class updateVIEW(UpdateView):
+  model = post
+  template_name = 'update.html'
+  #form_class = UpostFORMS
+  fields = ['Title','Details']
   success_url = reverse_lazy('index')
 
 

@@ -13,7 +13,8 @@
     <p>{{ i.Details }}</p>
     <hr>
     {% if user == i.User_Name %}
-      <a href="{% url 'delete' i.pk %}" >deletepost</a>
+      <a href="{% url 'delete' i.pk %}" >delete post</a>
+      <a style="margin-left: 10%;" href="{% url 'update' i.pk %}" >update post</a>
     {% endif %}
   {% endfor %}
 </body>
