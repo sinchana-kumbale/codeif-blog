@@ -1,3 +1,15 @@
 from django.db import models
+from django.db import models
+from django.conf import settings
+from django.utils import timezone
+from django.contrib.auth.models import User,AbstractUser
+from app.user.models import CustomUser
+from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
+class writerDetails(models.Model):
+  User_Name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default= 0)
+  follower = models.IntegerField(default = 0)
+  isValidated = models.BooleanField(default = False)
+def __str__(self):
+  return self.User_Name

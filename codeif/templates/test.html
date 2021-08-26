@@ -46,6 +46,8 @@
     <a href="{% url 'history' %}" class="btn">
       <b>{{user}}</b> Post History
     </a> <hr>
+    <p><b>Followers Count: </b>{{followers}}</p>
+    <p><b>IsValidated: </b>{{isValidated}}</p>
     {% endif %}
   {% endif %}
   {% if user.is_authenticated %}

@@ -7,6 +7,11 @@ from django.urls import reverse_lazy
 from django.conf import settings
 from django.contrib.auth.models import User
 
+#import sys
+  
+# setting path
+#sys.path.append('../writer') # Adding writer to the system path to import its models.
+from .. import models as mo #importing the writer models.
 # =======================================Create your post logic (here)==================-==============================    Images =request.FILES['Images']       Category=request.POST['CategoryF']
 def createVIEW(request):
   if request.method == 'POST':
@@ -18,9 +23,10 @@ def createVIEW(request):
 
   else:
     form = CpostFORMS()
-  
-  context = {'form': form}
-  return render(request,'createPost.html', context)
+
+    context = {'form': form}
+
+    return render(request,'createPost.html', context)
 
 
 
@@ -53,13 +59,13 @@ def updateVIEW(request, pk):
   form = UpostFORMS(instance = postinfo)
 
   if request.method == 'POST':
-    form = UpostFORMS(request.POST, instance = postinfo)
-    if form.is_valid():
-      form.save()
-      return HttpResponseRedirect(reverse('test'))
+  form = UpostFORMS(request.POST, instance = postinfo)
+  if form.is_valid():
+    form.save()
+    return HttpResponseRedirect(reverse('test'))
 
   else:
-    form = UpostFORMS()
+  form = UpostFORMS()
   return render(request, 'update.html', {'form' : form})'''
 
 
@@ -75,28 +81,36 @@ class updateVIEW(UpdateView):
 
 def WhistoryVIEW(request):
   Hposts = post.objects.all().filter(User_Name=request.user)
-  return render(request, 'whistory.html', {'Hposts' : Hposts})
+  details = authorDetails(request.user)
+  return render(request, 'whistory.html', {'Hposts' : Hposts,'followers':details[0],'isValidated':details[1]})
 
+#To return the number of followers and their verified status 
+def authorDetails(user):
+  print(user)
+  print(mo.writerDetails.objects.all())
+  follower  = None
+  is_validated = None
+  try:
+    writer_Details = mo.writerDetails.objects.filter(User_Name = user)
+    if (writer_Details):
+      follower = writer_Details[0].follower
+      is_validated = writer_Details[0].isValidated
+      print(writer_Details)
+  except mo.writerDetails.DoesNotExist:
+    follower  = None
+    is_validated = None
+  return (follower,is_validated)
 
 def LikeView(request, pk):
-  each_post = get_object_or_404(post, id = request.POST.get('post_id'))
-  liked = False
-  if each_post.likes.filter(id=request.user.id).exists():
-    each_post.likes.remover(request.user)
+    each_post = get_object_or_404(post, id=request.POST.get('post_id'))
     liked = False
-  else:
-    each_post.likes.add(request.user)
-    liked = True
-  return HttpResponseRedirect(reverse('details', args=[str(pk)]))
+    if each_post.likes.filter(id=request.user.id).exists():
+        each_post.likes.remove(request.user)
+        liked = False 
+    else:
+        each_post.likes.add(request.user)  
+        liked = True 
+    return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))
+  
+  
 
-
-# def LikeView(request, pk):
-#     post = get_object_or_404(Post, id=request.POST.get('post_id'))
-#     liked = False
-#     if post.likes.filter(id=request.user.id).exists():
-#         post.likes.remove(request.user)
-#         liked = False 
-#     else:
-#         post.likes.add(request.user)  
-#         liked = True 
-#     return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))
