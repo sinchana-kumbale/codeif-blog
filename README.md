@@ -1,6 +1,6 @@
 # Welcome to CodeifBlog!
 
-Welcome to CodeifBlog - An AI driven **E-Magazine** and **Blog** crafted using _Django_.
+Welcome to CodeifBlog - An **E-Magazine** and **Blog** crafted using _Django_.
 
 The Features that are currently incorporated or in the works include : 
 - The basic Login and Sign up structure based on user category - _Writer_ or _Reader_ .
