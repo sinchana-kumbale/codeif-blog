@@ -13,22 +13,15 @@ class post(models.Model):
   Category = models.CharField(max_length=100,null=True,primary_key=False)
   Title   = models.CharField(max_length=500, null=True,primary_key=False)
   Details = models.TextField()
-
   views = models.IntegerField(default=0)
-
-
-  #views = models.IntegerField(max_length=200,default=0)
-
-  published_date = models.DateTimeField(default=timezone.now)
   likes = models.ManyToManyField(CustomUser, related_name='blog_posts_likes')
+  published_date = models.DateTimeField(default=timezone.now)
 
   def __str__(self):
     return self.Title
 
 class Category(models.Model):
-    name = models.CharField(max_length=255)     
-    def __str__(self):
-        return self.name
+  Category_name = models.CharField(max_length=255)     
 
-    def get_absolute_url(self):
-        return reverse('home')
+  def __str__(self):
+    return self.Category_name
