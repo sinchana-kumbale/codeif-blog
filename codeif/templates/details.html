@@ -16,9 +16,9 @@
       <a href="{% url 'delete' i.pk %}" >delete post</a>
       <a style="margin-left: 10%;" href="{% url 'update' i.pk %}" >update post</a>
     {% endif %}
-  {% endfor %}
+  
 
-  <form action="{% url 'like_post' each_post.pk %}" method="POST">
+  <form action="{% url 'like_post' i.pk %}" method="POST">
 		{% csrf_token %}
 	<!-- Like Section -->
 	{% if user.is_authenticated %}
@@ -36,6 +36,6 @@
 		- {{ total_likes }} Likes
 	
 	</form>
-
+  {% endfor %}
 </body>
 </html>

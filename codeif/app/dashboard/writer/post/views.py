@@ -16,7 +16,7 @@ def createVIEW(request):
   if request.method == 'POST':
     form = CpostFORMS(request.POST, request.FILES)
     if form.is_valid():
-      new_req = post(User_Name = request.user,Title=request.POST['TitleF'],Details = request.POST['DetailsF'],Category=request.POST['CategoryF'])
+      new_req = post(User_Name = request.user,Title=request.POST['TitleF'],Details = request.POST['DetailsF'],)
       new_req.save()
       return HttpResponseRedirect(reverse('test'))
 
