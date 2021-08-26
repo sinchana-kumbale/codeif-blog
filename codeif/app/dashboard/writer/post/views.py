@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.http import HttpResponseRedirect
-from .models import TotalViews, post
+from .models import post
 from .forms import CpostFORMS, UpostFORMS
 from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -11,12 +11,12 @@ from django.contrib.auth.models import User
 from .. import models as mo #importing the writer models.
 
 
-# =======================================Create your post logic (here)==================-==============================    Images =request.FILES['Images']       Category=request.POST['CategoryF']
+# =======================================Create your post logic (here)==================-==============================    Images =request.FILES['Images']       
 def createVIEW(request):
   if request.method == 'POST':
     form = CpostFORMS(request.POST, request.FILES)
     if form.is_valid():
-      new_req = post(User_Name = request.user,Title=request.POST['TitleF'],Details = request.POST['DetailsF'],)
+      new_req = post(User_Name = request.user,Title=request.POST['TitleF'],Details = request.POST['DetailsF'],Category=request.POST['CategoryF'])
       new_req.save()
       return HttpResponseRedirect(reverse('test'))
 

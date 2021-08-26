@@ -21,13 +21,7 @@ class post(models.Model):
     return self.Title
 
 class Category(models.Model):
-  name = models.CharField(max_length=255)     
+  Category_name = models.CharField(max_length=255)     
 
   def __str__(self):
     return self.Category_name
-
-class TotalViews(models.Model):
-  total_views = models.BigIntegerField()
-
-  def __str__(self):
-      return self.total_views

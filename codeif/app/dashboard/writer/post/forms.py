@@ -1,13 +1,13 @@
 from django import forms
 from .models import post, Category
 
-# choices = Category.objects.all().values_list('Category_name','Category_name')
+choices = Category.objects.all().values_list('Category_name','Category_name')
 
-# # made a empty strings for collect the choises....
-# choice_list = []
-# # using loop we fetch data in choise_list
-# for i in choices:
-#   choice_list.append(i)
+# made a empty strings for collect the choises....
+choice_list = []
+# using loop we fetch data in choise_list
+for i in choices:
+  choice_list.append(i)
 
 
 class CpostFORMS(forms.Form):
@@ -25,11 +25,13 @@ class CpostFORMS(forms.Form):
       'id'   :'title'
     }))
 
-  # CategoryF= forms.ChoiceField(choices=choices, 
-  #   widget= forms.Select(attrs={
-  #     'class':'form-control',
-  #     'id'   :'title',      
-  #   }))
+  CategoryF= forms.ChoiceField(choices = choices,
+    widget= forms.Select(attrs={
+      'class':'form-control',
+      'id'   :'title',      
+    }))
+
+
 
 
 class UpostFORMS(forms.Form):
