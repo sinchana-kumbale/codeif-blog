@@ -7,17 +7,16 @@ from django.urls import reverse_lazy
 from django.conf import settings
 from django.contrib.auth.models import User
 
-#import sys
-  
-# setting path
 #sys.path.append('../writer') # Adding writer to the system path to import its models.
 from .. import models as mo #importing the writer models.
+
+
 # =======================================Create your post logic (here)==================-==============================    Images =request.FILES['Images']       Category=request.POST['CategoryF']
 def createVIEW(request):
   if request.method == 'POST':
     form = CpostFORMS(request.POST, request.FILES)
     if form.is_valid():
-      new_req = post(User_Name = request.user,Title=request.POST['TitleF'],Details = request.POST['DetailsF'],)
+      new_req = post(User_Name = request.user,Title=request.POST['TitleF'],Details = request.POST['DetailsF'],Category=request.POST['CategoryF'])
       new_req.save()
       return HttpResponseRedirect(reverse('test'))
 
@@ -101,16 +100,35 @@ def authorDetails(user):
     is_validated = None
   return (follower,is_validated)
 
-def LikeView(request, pk):
-    each_post = get_object_or_404(post, id=request.POST.get('post_id'))
-    liked = False
-    if each_post.likes.filter(id=request.user.id).exists():
-        each_post.likes.remove(request.user)
-        liked = False 
-    else:
-        each_post.likes.add(request.user)  
-        liked = True 
-    return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))
+def likeVIEW(request, pk):
+  each_post = get_object_or_404(post, id=request.POST.get('post_id'))
+  liked = False
+  if each_post.likes.filter(id=request.user.id).exists():
+    each_post.likes.remove(request.user)
+    liked = False 
+  else:
+    each_post.likes.add(request.user)  
+    liked = True 
+  return HttpResponseRedirect(reverse('details', args=[str(pk)]))
   
+
+'''def likeVIEW(request, id):
+  user = request.user
+  if request.method == 'POST':
+    post_id = request.POST.get('post_id')
+    post_obj = Instruction.objects.get(id=post_id)
+
+    if user in post_obj.Likes_M.all():
+      post_obj.Likes_M.remove(user)
+      post_obj.Liked_int_M = post_obj.Liked_int_M - 1
+      post_obj.save()
+
+    else:
+      post_obj.Likes_M.add(user)
+      local_VAR_like_status=True
+      post_obj.Liked_int_M = post_obj.Liked_int_M + 1
+      post_obj.save()
+  #not using now
+  return HttpResponseRedirect(reverse('details', args=[str(id)]))'''
   
 
