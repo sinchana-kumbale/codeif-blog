@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.http import HttpResponseRedirect
-from .models import post
+from .models import TotalViews, post
 from .forms import CpostFORMS, UpostFORMS
 from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -35,9 +35,11 @@ def detailsVIEW(request, id):
   content = post.objects.filter(id=id)
   #views logic...
   blog_post = post.objects.get(id=id) 
-  blog_post.views = blog_post.views + 1
-  blog_post.Users_views.add(request.user)
-  blog_post.save()   
+  # blog_post.views = blog_post.views + 1
+  # if User.is_authenticated:
+  #   blog_post.Users_views.add(request.user)
+  #   blog_post.save()   
+
   return render(request,'details.html', {'content': content})
 
 

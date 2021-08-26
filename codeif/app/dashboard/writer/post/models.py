@@ -25,3 +25,9 @@ class Category(models.Model):
 
   def __str__(self):
     return self.Category_name
+
+class TotalViews(models.Model):
+  total_views = models.BigIntegerField()
+
+  def __str__(self):
+      return self.total_views
