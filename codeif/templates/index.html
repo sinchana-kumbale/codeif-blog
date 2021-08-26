@@ -11,14 +11,18 @@
   all posts (page without filter)
   <br>
   <hr>
-  {% for i in posts %}
-    <h1>{{ i.Title }}</h1>
-    <h3>{{ i.User_Name }}</h3>
-    <p>{{ i.Details }} <b style="margin-left: 10%; color: red;">{{ i.views }}  views</b> </p>
-    <a href="{% url 'details' i.pk %}">Continue Reading</a> 
+  {% for post,details in list %}
+    <h1>{{ post.Title }}</h1>
+    <h3>{{ post.User_Name }}</h3>
+    <p>{{ post.Details }} 
+    <p><b>Number of Followers: </b>{{ details.followers }}</p>
+    <p><b>IsValidated: </b>{{details.isValidated}}</p>
+    <b style="margin-left: 10%; color: red;">{{ post.views }}  views</b> </p>
+    <a href="{% url 'details' post.pk %}">Continue Reading</a> 
     <br><br><br>
     <!-- <b>Viewed Users:------ </b> {{ i.Users_views }} -->
     <hr>
   {% endfor %}
+  
 </body>
 </html>

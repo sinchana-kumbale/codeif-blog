@@ -10,6 +10,8 @@
   <br>
   all posts [ page with <b>"{{ user }}"</b> filter ]
   <br>
+  <p><b>Followers Count: </b>{{ followers }}</p>
+  <p><b>IsValidated: </b>{{ isValidated }}</p>
   <hr>
   {% for i in Hposts %}
     <h1>{{ i.Title }}</h1>
@@ -17,5 +19,6 @@
     <p>{{ i.Details }}</p>
     <hr>
   {% endfor %}
+
 </body>
 </html>
