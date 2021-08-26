@@ -47,6 +47,12 @@ class UpostFORMS(forms.Form):
       'id'   :'title'
     }))
 
+  '''CategoryF= forms.ChoiceField(choices=choices, 
+    widget= forms.Select(attrs={
+      'class':'form-control',
+      'id'   :'title',      
+    }))'''
+
    
   
   
