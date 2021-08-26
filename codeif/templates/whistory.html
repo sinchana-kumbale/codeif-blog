@@ -14,7 +14,7 @@
   <p><b>IsValidated: </b>{{ isValidated }}</p>
   <hr>
   {% for i in Hposts %}
-    <h1>{{ i.Title }}</h1>
+  <a href="{% url 'delete' i.pk %}"><h1>{{ i.Title }}</h1></a>
     <h3>{{ i.User_Name }}</h3>
     <p>{{ i.Details }}</p>
     <hr>

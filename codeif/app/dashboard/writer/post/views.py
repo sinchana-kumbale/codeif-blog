@@ -35,11 +35,9 @@ def detailsVIEW(request, id):
   content = post.objects.filter(id=id)
   #views logic...
   blog_post = post.objects.get(id=id) 
-  # blog_post.views = blog_post.views + 1
-  # if User.is_authenticated:
-  #   blog_post.Users_views.add(request.user)
-  #   blog_post.save()   
-
+  blog_post.views = blog_post.views + 1
+  #blog_post.Users_views.add(request.user)
+  blog_post.save()    
   return render(request,'details.html', {'content': content})
 
 
@@ -54,21 +52,6 @@ class DeleteVIEW(DeleteView):
 
 
 # =======================================History post logic (here)=======================================================
-'''
-def updateVIEW(request, pk):
-  postinfo = post.objects.get(id=pk)
-  form = UpostFORMS(instance = postinfo)
-
-  if request.method == 'POST':
-  form = UpostFORMS(request.POST, instance = postinfo)
-  if form.is_valid():
-    form.save()
-    return HttpResponseRedirect(reverse('test'))
-
-  else:
-  form = UpostFORMS()
-  return render(request, 'update.html', {'form' : form})'''
-
 
 class updateVIEW(UpdateView):
   model = post
@@ -102,35 +85,26 @@ def authorDetails(user):
     is_validated = None
   return (follower,is_validated)
 
-def likeVIEW(request, pk):
-  each_post = get_object_or_404(post, id=request.POST.get('post_id'))
-  liked = False
-  if each_post.likes.filter(id=request.user.id).exists():
-    each_post.likes.remove(request.user)
-    liked = False 
-  else:
-    each_post.likes.add(request.user)  
-    liked = True 
-  return HttpResponseRedirect(reverse('details', args=[str(pk)]))
-  
 
-'''def likeVIEW(request, id):
+
+# =======================================like post logic (here)=======================================================
+
+def likeVIEW(request, id):
   user = request.user
   if request.method == 'POST':
     post_id = request.POST.get('post_id')
-    post_obj = Instruction.objects.get(id=post_id)
+    post_obj = post.objects.get(id=post_id)
 
-    if user in post_obj.Likes_M.all():
-      post_obj.Likes_M.remove(user)
-      post_obj.Liked_int_M = post_obj.Liked_int_M - 1
+    if user in post_obj.likes.all():
+      post_obj.likes.remove(user)
+      post_obj.like = post_obj.like - 1
       post_obj.save()
 
     else:
-      post_obj.Likes_M.add(user)
+      post_obj.likes.add(user)
+      post_obj.like = post_obj.like + 1
       local_VAR_like_status=True
-      post_obj.Liked_int_M = post_obj.Liked_int_M + 1
       post_obj.save()
-  #not using now
-  return HttpResponseRedirect(reverse('details', args=[str(id)]))'''
+  return HttpResponseRedirect(reverse('details', args=[str(id)]))
   
 

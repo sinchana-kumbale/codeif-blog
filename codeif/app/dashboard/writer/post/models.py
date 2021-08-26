@@ -14,6 +14,7 @@ class post(models.Model):
   Title   = models.CharField(max_length=500, null=True,primary_key=False)
   Details = models.TextField()
   views = models.IntegerField(default=0)
+  like = models.IntegerField(default=0)
   likes = models.ManyToManyField(CustomUser, related_name='blog_posts_likes')
   published_date = models.DateTimeField(default=timezone.now)
 
