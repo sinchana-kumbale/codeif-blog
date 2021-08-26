@@ -11,3 +11,20 @@ The Features that are currently incorporated or in the works include :
 - Reader's Dashboard - Currently being worked on.
 
 
+## Instructions to run on Local System : 
+
+Run the following commands at the terminal
+
+- git clone [this repository](https://github.com/sinchana-kumbale/codeif-blog) into the desired folder 
+- Navigate to the folder codeif-blog
+- Activate the virtual environment in codeif-blog using the following command 
+> python -m pipenv shell
+- Download the required dependencies using the command below
+> python -m pipenv install -r requirements.txt 
+- Navigate into codeif which is the directory containing the manage.py file
+- Run the following command 
+>python manage.py runserver
+
+Open a web browser and type http://127.0.1:8000/ or http://localhost:8000/
+
+
