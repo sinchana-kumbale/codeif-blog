@@ -15,7 +15,7 @@
 -Post 
   1) Title (Done)
   2) Body (Done)
-  3) Post Category (Done)
+  3) Post Category 
   4) Comments (Done)
   5) Reviews(star) (Done)
   6) Edit/Delete (Done)
