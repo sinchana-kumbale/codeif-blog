@@ -1,6 +1,7 @@
 from django.conf.urls.static import static
 from django.urls import path, include
 from .import views
+from .views import LikeView
 
 urlpatterns = [
   path('create/',views.createVIEW, name='Cpost'),
@@ -8,4 +9,5 @@ urlpatterns = [
   path('<int:id>/details/',views.detailsVIEW, name='details'),
   path('<int:pk>/update/', views.updateVIEW.as_view(), name='update'),  
   path('<int:pk>/delete/', views.DeleteVIEW.as_view(), name='delete'), 
+  path('like/<int:pk>', LikeView, name='like_post'), 
 ]

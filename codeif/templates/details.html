@@ -17,5 +17,25 @@
       <a style="margin-left: 10%;" href="{% url 'update' i.pk %}" >update post</a>
     {% endif %}
   {% endfor %}
+
+  <form action="{% url 'like_post' each_post.pk %}" method="POST">
+		{% csrf_token %}
+	<!-- Like Section -->
+	{% if user.is_authenticated %}
+		{% if liked %}
+			<button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-danger btn-sm">Unlike</button> 
+		{% else %}	
+			<button type="submit", name="post_id", value="{{ post.id }}", class="btn btn-primary btn-sm">Like</button> 
+
+		{% endif %}
+	{% else %}
+		<!-- <small><a href="{% url 'login' %}">Login</a> to like</small> -->
+    <p>Login to Like</p>
+	{% endif %}
+	
+		- {{ total_likes }} Likes
+	
+	</form>
+
 </body>
 </html>

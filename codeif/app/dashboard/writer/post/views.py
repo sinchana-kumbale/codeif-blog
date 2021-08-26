@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import get_object_or_404, render, redirect, reverse
 from django.http import HttpResponseRedirect
 from .models import post
 from .forms import CpostFORMS, UpostFORMS
@@ -76,3 +76,27 @@ class updateVIEW(UpdateView):
 def WhistoryVIEW(request):
   Hposts = post.objects.all().filter(User_Name=request.user)
   return render(request, 'whistory.html', {'Hposts' : Hposts})
+
+
+def LikeView(request, pk):
+  each_post = get_object_or_404(post, id = request.POST.get('post_id'))
+  liked = False
+  if each_post.likes.filter(id=request.user.id).exists():
+    each_post.likes.remover(request.user)
+    liked = False
+  else:
+    each_post.likes.add(request.user)
+    liked = True
+  return HttpResponseRedirect(reverse('details', args=[str(pk)]))
+
+
+# def LikeView(request, pk):
+#     post = get_object_or_404(Post, id=request.POST.get('post_id'))
+#     liked = False
+#     if post.likes.filter(id=request.user.id).exists():
+#         post.likes.remove(request.user)
+#         liked = False 
+#     else:
+#         post.likes.add(request.user)  
+#         liked = True 
+#     return HttpResponseRedirect(reverse('article_detail', args=[str(pk)]))
