@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.conf import settings
 from django.contrib.auth.models import User
 
-#sys.path.append('../writer') # Adding writer to the system path to import its models.
+#sys.path.append('../writer') # Adding writer to the system path to import its models....
 from .. import models as mo #importing the writer models.
 
 
