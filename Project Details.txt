@@ -1,0 +1,26 @@
+-Dashboard
+  1) Name (Done)
+  2) Social 
+  3) Money Earned(Author)
+  4) Articles(Author) (Done)
+  5) User Type (Done)
+  6) review(Author) 
+  7) History(Reader) (Done)
+  8) Views(Author) (Done)
+  9) Portfolios (Done)
+  10) Followers 
+  11) Verified (Done)
+  12) Followers Info (Done)
+
+-Post 
+  1) Title (Done)
+  2) Body (Done)
+  3) Post Category (Done)
+  4) Comments (Done)
+  5) Reviews(star) (Done)
+  6) Edit/Delete (Done)
+
+-Graph (To be Discussed in meeting)
+
+
+
