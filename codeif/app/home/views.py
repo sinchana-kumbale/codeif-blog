@@ -26,13 +26,13 @@ from app.dashboard.writer.post import views as vw
 #   return render(request, 'index.html', {'list':required_list})
 
 def indexVIEW(request):
-  print(request.user)
-  print(request.user.Category)
+  # print(request.user)
+  # print(request.user.Category)
   if (request.user.Category == 'Writer' and not(writerDetails.objects.filter(User_Name = request.user))):
   	writer = writerDetails(User_Name = request.user,follower = 0,isValidated =False)
   	writer.save()
   details = vw.authorDetails(request.user)
-  return render(request, 'test.html',{'followers':details[0],'isValidated':details[1]})
+  return render(request, 'dashboard.html',{'followers':details[0],'isValidated':details[1]})
 # testVIEW
 # indexVIEW
 
