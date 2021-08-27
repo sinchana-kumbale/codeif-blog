@@ -40,11 +40,14 @@
     <a href="{% url 'Cpost' %}" class="btn">
        createPost
     </a>
-    <a href="{% url 'index' %}" class="btn">
+    <a href="{% url 'test' %}" class="btn">
        all posts & Details & Delete & Update
     </a>
     <a href="{% url 'history' %}" class="btn">
       <b>{{user}}</b> Post History
+    </a> <hr>
+    <a href="{% url 'followerList' %}" class="btn">
+      <b>{{user}}</b> Your Followers List
     </a> <hr>
     <p><b>Followers Count: </b>{{followers}}</p>
     <p><b>IsValidated: </b>{{isValidated}}</p>
@@ -52,9 +55,10 @@
   {% endif %}
   {% if user.is_authenticated %}
     {% if user.Category == 'Reader' %} <b>Reader = </b>
-    <a href="{% url 'index' %}" class="btn">
+    <a href="{% url 'test' %}" class="btn">
        all posts & Details
     </a>
+    <p><b>Following Count: </b>{{following}}</p>
     <hr>
     {% endif %}
   {% endif %}

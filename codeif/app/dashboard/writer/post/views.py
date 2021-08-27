@@ -66,12 +66,11 @@ class updateVIEW(UpdateView):
 def WhistoryVIEW(request):
   Hposts = post.objects.all().filter(User_Name=request.user)
   details = authorDetails(request.user)
+  print(type(request.user))
   return render(request, 'whistory.html', {'Hposts' : Hposts,'followers':details[0],'isValidated':details[1]})
 
 #To return the number of followers and their verified status 
 def authorDetails(user):
-  print(user)
-  print(mo.writerDetails.objects.all())
   follower  = None
   is_validated = None
   try:
@@ -108,3 +107,7 @@ def likeVIEW(request, id):
   return HttpResponseRedirect(reverse('details', args=[str(id)]))
   
 
+def FollowerList(request):
+  Followerlist = mo.writerDetails.objects.all().filter(User_Name=request.user)
+  details = authorDetails(request.user)
+  return render(request, 'followerList.html', {'Followerlist' : Followerlist,'followers':details[0],'isValidated':details[1]})

@@ -34,8 +34,12 @@
   <br>
   <hr>
   {% for post,details in list %}
+  
     <h1>{{ post.Title }}</h1>
     <h3>{{ post.User_Name }}</h3>
+    {% if user.Category == 'Reader' %}
+  <a href="{% url 'follow' post.pk%}" class="btn">Follow Writer!</a>
+  {% endif %}
     <p>{{ post.Details }} 
     <p><b>Number of Followers: </b>{{ details.followers }}</p>
     <p><b>IsValidated: </b>{{details.isValidated}}</p>

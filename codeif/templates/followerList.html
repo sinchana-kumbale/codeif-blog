@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <br>
+  Your Followers [ page with <b>"{{ user }}"</b> filter ]
+  <br>
+  <p><b>Followers Count: </b>{{ followers }}</p>
+  <p><b>IsValidated: </b>{{ isValidated }}</p>
+  <hr>
+  {% for i in Followerlist %}
+  <h1>{{ i.User_Name }}</h1>
+  <h3>{{ i.followerList }}</h3>
+    
+    <hr>
+  {% endfor %}
+
+</body>
+</html>
