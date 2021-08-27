@@ -1,0 +1,36 @@
+
+<style>
+  .btn {
+    display: inline-block;
+    background-color: lightgray;
+    color: black;
+    text-decoration: none;
+    padding: 0.8rem 2rem;
+    transition: all 0.5s;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+  }
+  .form-control {
+    text-align: center;
+    text-decoration: none;
+  }
+  .text-input {
+    width: 300px;
+    height: 30px;
+  }
+</style>
+
+<h1>
+  An otp has been sent to your registered email. Enter the otp to verify your email.
+</h1>
+
+<!-- <form action="{% url 'login' %}"></form> -->
+<form action="#" class="form-control">
+  {% csrf_token %}
+  <input type="text" class="text-input" name="otp" placeholder="Enter the OTP" required>
+  <br> <br>
+  <button type="submit" class="btn">
+    Verify
+  </button>
+</form>
