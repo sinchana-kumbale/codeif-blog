@@ -10,6 +10,8 @@ from django.contrib.auth.models import AbstractUser
 class writerDetails(models.Model):
   User_Name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default= 0)
   follower = models.IntegerField(default = 0)
+  followerList = models.ManyToManyField(CustomUser, related_name='followerList')
   isValidated = models.BooleanField(default = False)
 def __str__(self):
   return self.User_Name
+
