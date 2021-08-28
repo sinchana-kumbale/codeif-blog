@@ -38,8 +38,14 @@
     <h1>{{ post.Title }}</h1>
     <h3>{{ post.User_Name }}</h3>
     {% if user.Category == 'Reader' %}
-  <a href="{% url 'follow' post.pk%}" class="btn">Follow Writer!</a>
-  {% endif %}
+    {% if is_followed %}
+        <a href="{% url 'follow' post.User_Name %}" style="border: 1px solid; background: red; padding:10px; color: white;">Unfollow</a>
+    {% else %}
+        <a href="{% url 'follow' post.User_Name %}" style="border: 1px solid; background: yellow; padding:10px; color: black;">Follow</a>
+    {% endif %}
+
+    {% endif %}
+  
     <p>{{ post.Details }} 
     <p><b>Number of Followers: </b>{{ details.followers }}</p>
     <p><b>IsValidated: </b>{{details.isValidated}}</p>
