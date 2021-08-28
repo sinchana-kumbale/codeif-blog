@@ -7,11 +7,17 @@ from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
 from app.dashboard.writer import models as mo
 
-def followWriter(request, pk):
+def followWriter(request, id):
+  print("hello")
   user = request.user
   if request.method == 'POST':
     Writer_Name = request.POST.get(id = id)
-    writer_object = readerDetails.objects.get(User_Name = user)
+    # writer_object = readerDetails.objects.get(User_Name = user)
+    writer_object = readerDetails.objects.filter(User_Name = user)
+    print("hello")
+    # print(type(writer_object))
+    # print(writer_object)
+    # print(writer_object)
     if Writer_Name in writer_object.followingList:
       writer_object.followingList.remove(Writer_Name)
       writer_object.followings = writer_object.followings - 1

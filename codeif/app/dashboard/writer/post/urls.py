@@ -10,6 +10,6 @@ urlpatterns = [
   path('<int:pk>/update/', views.updateVIEW.as_view(), name='update'),  
   path('<int:pk>/delete/', views.DeleteVIEW.as_view(), name='delete'), 
   path('like/<int:id>', views.likeVIEW, name='like'), 
-  path('follow/<int:pk>',vr.followWriter,name = 'follow'),
+  path('follow/<int:id>',vr.followWriter,name = 'follow'),
   path('followerList/', views.FollowerList, name='followerList'),
 ]

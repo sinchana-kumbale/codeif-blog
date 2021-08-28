@@ -10,7 +10,7 @@ from django.contrib.auth.models import AbstractUser
 
 
 class readerDetails(models.Model):
-  User_Name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,default= 0)
+  User_Name = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   followings = models.IntegerField(default = 0)
   followingList = models.ManyToManyField(CustomUser, related_name='followingList')
   isValidated = models.BooleanField(default = False)
