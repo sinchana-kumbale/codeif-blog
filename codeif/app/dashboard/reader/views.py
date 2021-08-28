@@ -6,15 +6,9 @@ from django.conf import settings
 # Create your views here.
 from django.http import HttpResponseRedirect
 from app.dashboard.writer import models as mo
-<<<<<<< HEAD
-
-def followWriter(request, id):
-  print("hello")
-=======
 #from django.contrib.auth.models import CustomUser
 from app.user.models import CustomUser as User
 '''def followWriter(request, pk):
->>>>>>> f167118396608666460880fef091d4d5e118ff3f
   user = request.user
   if request.method == 'POST':
     Writer_Name = request.POST.get(id = id)
