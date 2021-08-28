@@ -6,7 +6,7 @@ from django.views.generic.edit import DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.conf import settings
 from django.contrib.auth.models import User
-
+from app.dashboard.reader.models import Followers
 #sys.path.append('../writer') # Adding writer to the system path to import its models....
 from .. import models as mo #importing the writer models.
 
@@ -76,12 +76,13 @@ def authorDetails(user):
   try:
     writer_Details = mo.writerDetails.objects.filter(User_Name = user)
     if (writer_Details):
-      follower = writer_Details[0].follower
+      #follower = writer_Details[0].follower
       is_validated = writer_Details[0].isValidated
       print(writer_Details)
   except mo.writerDetails.DoesNotExist:
     follower  = None
     is_validated = None
+  follower = Followers.objects.filter(another_user = user).count()
   return (follower,is_validated)
 
 

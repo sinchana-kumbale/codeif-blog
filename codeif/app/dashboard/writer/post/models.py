@@ -2,7 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 from django.contrib.auth.models import User
-from app.user.models import CustomUser
+from app.user.models import CustomUser 
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
 

@@ -17,3 +17,6 @@ class readerDetails(models.Model):
 def __str__(self):
   return self.User_Name
 
+class Followers(models.Model):
+    user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
+    another_user = models.ManyToManyField(CustomUser, related_name='another_user')
