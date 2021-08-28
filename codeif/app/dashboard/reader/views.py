@@ -1,14 +1,20 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, render, redirect, reverse
-from .models import readerDetails
+from .models import readerDetails,Followers
 from django.conf import settings
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
 # Create your views here.
 from django.http import HttpResponseRedirect
 from app.dashboard.writer import models as mo
+<<<<<<< HEAD
 
 def followWriter(request, id):
   print("hello")
+=======
+#from django.contrib.auth.models import CustomUser
+from app.user.models import CustomUser as User
+'''def followWriter(request, pk):
+>>>>>>> f167118396608666460880fef091d4d5e118ff3f
   user = request.user
   if request.method == 'POST':
     Writer_Name = request.POST.get(id = id)
@@ -33,5 +39,37 @@ def followWriter(request, id):
       mo.writerDetails.followerList.add(user)
       mo.writerDetails.follower = mo.follower + 1
       mo.writerDetails.save()
-  return HttpResponseRedirect(reverse('test'))
+  return HttpResponseRedirect(reverse('test'))'''
+
+def follow_user(request, user_name):
+    other_user = User.objects.get(email = user_name)
+    session_user = request.user
+    get_user = User.objects.get(email=session_user)
+    check_follower = Followers.objects.get(user=get_user.id)
+    session_following, create = Followers.objects.get_or_create(user=session_user)
+    following, create = Followers.objects.get_or_create(user=session_user.id)
+    check_user_followers = Followers.objects.filter(another_user=get_user)
+
+    is_followed = False
+    if session_following.another_user.filter(name=user_name).exists() or following.another_user.filter(name=user_name).exists():
+        is_followed=True
+    else:
+        is_followed=False
+    param = {'user_obj': get_user,'followers':check_user_followers, 'following': following,'is_followed':is_followed}
+    is_followed = False
+    if other_user.name != session_user:
+        if check_follower.another_user.filter(name=other_user).exists():
+            add_usr = Followers.objects.get(user=get_user)
+            add_usr.another_user.remove(other_user)
+            is_followed = False
+            return HttpResponseRedirect(reverse('test'))
+        else:
+            add_usr = Followers.objects.get(user=get_user)
+            add_usr.another_user.add(other_user)
+            is_followed = True
+            return HttpResponseRedirect(reverse('test'))
+
+        return HttpResponseRedirect(reverse('test'))
+    else:
+        return HttpResponseRedirect(reverse('test'))
   
