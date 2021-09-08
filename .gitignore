@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=django
 
 ### Django ###
+Virtual-env.txt
 *.log
 *.pot
 *.pyc

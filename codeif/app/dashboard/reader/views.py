@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, render, redirect, reverse
-from .models import readerDetails,Followers
+from .models import readerDetails, Followers
 from django.conf import settings
 #from django.contrib.auth.models import User
 # Create your views here.
@@ -35,21 +35,24 @@ from app.user.models import CustomUser as User
       mo.writerDetails.save()
   return HttpResponseRedirect(reverse('test'))'''
 
+
 def follow_user(request, user_name):
-    other_user = User.objects.get(email = user_name)
+    other_user = User.objects.get(email=user_name)
     session_user = request.user
     get_user = User.objects.get(email=session_user)
-    check_follower = Followers.objects.get(user=get_user.id)
-    session_following, create = Followers.objects.get_or_create(user=session_user)
+    session_following, create = Followers.objects.get_or_create(
+        user=session_user)
     following, create = Followers.objects.get_or_create(user=session_user.id)
     check_user_followers = Followers.objects.filter(another_user=get_user)
+    check_follower = Followers.objects.get(user=get_user.id)
 
     is_followed = False
     if session_following.another_user.filter(name=user_name).exists() or following.another_user.filter(name=user_name).exists():
-        is_followed=True
+        is_followed = True
     else:
-        is_followed=False
-    param = {'user_obj': get_user,'followers':check_user_followers, 'following': following,'is_followed':is_followed}
+        is_followed = False
+    param = {'user_obj': get_user, 'followers': check_user_followers,
+             'following': following, 'is_followed': is_followed}
     is_followed = False
     if other_user.name != session_user:
         if check_follower.another_user.filter(name=other_user).exists():
@@ -66,4 +69,3 @@ def follow_user(request, user_name):
         return HttpResponseRedirect(reverse('test'))
     else:
         return HttpResponseRedirect(reverse('test'))
-  
