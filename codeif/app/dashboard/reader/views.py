@@ -1,10 +1,11 @@
+from app.user.models import CustomUser
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404, render, redirect, reverse
 from .models import readerDetails, Followers
 from django.conf import settings
 #from django.contrib.auth.models import User
 # Create your views here.
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, request
 from app.dashboard.writer import models as mo
 #from django.contrib.auth.models import CustomUser
 from app.user.models import CustomUser as User
@@ -69,3 +70,15 @@ def follow_user(request, user_name):
         return HttpResponseRedirect(reverse('test'))
     else:
         return HttpResponseRedirect(reverse('test'))
+
+
+def reader_dashboard(request):
+
+    # reader = CustomUser.objects.filter(Category='reader')
+    user = CustomUser.objects.all()
+
+    context = {
+        'user': user,
+    }
+
+    return render(request, 'index.html', context)

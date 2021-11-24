@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render
 from .models import CustomUser
-from django.contrib.auth import login,logout 
+from django.contrib.auth import login, logout
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from .forms import SignupFORMS
@@ -11,10 +11,11 @@ from django.urls import reverse_lazy, reverse
 
 # Create your views here.
 
+
 class UserRegisterView(generic.CreateView):
-  form_class = SignupFORMS
-  template_name  = 'registration/register.html'
-  success_url = reverse_lazy('verify')
+    form_class = SignupFORMS
+    template_name = 'registration/register.html'
+    success_url = reverse_lazy('login')
 
 # class UserVerifyView():
 #   form_class = SignupFORMS
@@ -23,8 +24,7 @@ class UserRegisterView(generic.CreateView):
 
 
 def UserVerifyView(request):
-  if request.method == 'POST':
-    pass
+    if request.method == 'POST':
+        pass
 
-  return render(request, 'registration/verify.html')
-
+    return render(request, 'registration/verify.html')
